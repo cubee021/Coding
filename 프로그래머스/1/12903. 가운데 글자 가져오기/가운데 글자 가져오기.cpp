@@ -4,14 +4,9 @@
 using namespace std;
 
 string solution(string s) {
-    string answer = "";
-    if(s.length() % 2 == 1)
-        answer += s[s.length()/2];
+    if(s.length() % 2 == 0)
+        return s.substr(s.length()/2-1, 2);
     else
-    {
-        answer += s[s.length()/2 - 1];
-        answer += s[s.length()/2];
-    }
+        return s.substr(s.length()/2, 1);
     
-    return answer;
 }
