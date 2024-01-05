@@ -11,5 +11,5 @@ int solution(int n) {
             return answer;
         answer++;
     }
-    
+    return 1;
 }
