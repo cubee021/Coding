@@ -6,7 +6,6 @@ using namespace std;
 vector<int> solution(vector<string> name, vector<int> yearning, vector<vector<string>> photo) {
     vector<int> answer;
     map<string, int> map;
-    
     for(int i=0; i<name.size(); i++)
         map.insert({name[i], yearning[i]});
     
