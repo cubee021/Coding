@@ -1,20 +1,14 @@
 #include <string>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 vector<int> solution(vector<int> arr) {
-    vector<int> answer;
-    int min = 0;
-    for(int i=0; i<arr.size(); i++)
-        if(arr[min] > arr[i])
-            min = i;
+    vector<int> answer = arr;
     
-    for(int i=0; i<arr.size(); i++)
-        if(i != min)
-            answer.push_back(arr[i]);
+    int min = *min_element(answer.begin(), answer.end());
+    int idx = find(answer.begin(), answer.end(), min) - answer.begin();
+    answer.erase(answer.begin() + idx);
     
-    if(answer.empty())
-        answer.push_back(-1);
-    
-    return answer;
+    return answer.empty() ? vector<int>(1, -1) : answer;
 }
