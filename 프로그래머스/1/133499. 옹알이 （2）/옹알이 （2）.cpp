@@ -4,23 +4,16 @@ using namespace std;
 
 int solution(vector<string> babbling) {
     int answer = 0;
-    vector<string> parts{"aya", "ye", "woo", "ma"};
-    vector<string> symbols{"!", "#", "$", "*"};
     
     for(string s : babbling)
     {
-        //여러번 나와서 점검하도록 수정
-        for(int i=0; i<parts.size(); i++)
-            if(s.find(parts[i]) != string::npos)
-                s.replace(s.find(parts[i]), parts[i].length(), symbols[i]);
-
-        for(int i=0; i<parts.size(); i++)
-            if(s.find(parts[i]) != string::npos)
-                s.replace(s.find(parts[i]), parts[i].length(), symbols[i]);
-        
-        for(int i=0; i<parts.size(); i++)
-            if(s.find(parts[i]) != string::npos)
-                s.replace(s.find(parts[i]), parts[i].length(), symbols[i]);
+        for(int i=0; i<s.length(); i++)
+        {
+            if(s.substr(i, 3) == "aya") s.replace(i, 3, "!");
+            else if(s.substr(i, 2) == "ye") s.replace(i, 2, "#");
+            else if(s.substr(i, 3) == "woo") s.replace(i, 3, "$");
+            else if(s.substr(i, 2) == "ma") s.replace(i, 2, "*");
+        }
         
         int i;
         char before = '0';
