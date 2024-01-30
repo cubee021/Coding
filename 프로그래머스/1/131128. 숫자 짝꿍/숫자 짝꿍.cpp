@@ -22,14 +22,7 @@ string solution(string X, string Y) {
             X[i] > Y[j] ? i++ : j++;
     }
     
-    if(answer.length() == 0)
-        return "-1";
+    if(answer.empty()) return "-1";
     
-    int sum = 0;
-    for(char c : answer)
-        sum += c-'0';
-    if(sum == 0)
-        return "0";
-    
-    return answer;
+    return answer[0] != '0' ? answer : "0";
 }
