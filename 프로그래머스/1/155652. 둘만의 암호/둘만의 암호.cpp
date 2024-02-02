@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 string solution(string s, string skip, int index) {
@@ -12,7 +11,7 @@ string solution(string s, string skip, int index) {
         {
             c == 'z' ? c = 'a' : c++;
             
-            if(find(skip.begin(), skip.end(), c) != skip.end())
+            if(skip.find(c) != string::npos)
                 i--;
             
         }
