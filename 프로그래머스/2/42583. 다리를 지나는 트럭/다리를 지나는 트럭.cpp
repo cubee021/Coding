@@ -14,21 +14,25 @@ int solution(int bridge_length, int weight, vector<int> truck_weights) {
     
     while(!q.empty())
     {
-        answer++;
+        if(next_idx == truck_weights.size())
+        {
+            answer += bridge_length;
+            break;
+        }
+        
         weight_sum -= q.front();
         q.pop();
         
-        if(next_idx != truck_weights.size())
+        if(weight_sum+truck_weights[next_idx] <= weight)
         {
-            if(weight_sum+truck_weights[next_idx] <= weight)
-            {
-                q.push(truck_weights[next_idx]);
-                weight_sum += truck_weights[next_idx];
-                next_idx++;
-            }
-            else
-                q.push(0);
+            q.push(truck_weights[next_idx]);
+            weight_sum += truck_weights[next_idx];
+            next_idx++;
         }
+        else
+            q.push(0);
+        
+        answer++;
     }
     
     return answer;
