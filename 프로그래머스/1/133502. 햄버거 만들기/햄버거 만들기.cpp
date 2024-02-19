@@ -11,11 +11,7 @@ int solution(vector<int> ingredient) {
     {
         if(i==2 && v.back()==1) v.back() = 12;
         else if(i==3 && v.back()==12) v.back() = 123;
-        else if(i==1 && v.back()==123) 
-        {
-            v.pop_back();
-            answer++;
-        }
+        else if(i==1 && v.back()==123) v.pop_back(), answer++;
         else v.push_back(i);
     }
     
