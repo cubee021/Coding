@@ -31,9 +31,8 @@ string solution(string new_id) {
         if(answer.back() == '.') answer.pop_back();
     }
     
-    if(answer.length() <= 2) // 7
-        while(answer.length() != 3)
-            answer += answer[answer.length()-1];
+    while(answer.length() <= 2) // 7
+        answer += answer[answer.length()-1];
     
     return answer;
 }
