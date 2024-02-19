@@ -20,8 +20,8 @@ string solution(string new_id) {
             break;
     }
     
-    if(answer[0] == '.') answer.erase(0, 1); // 4
-    if(answer[answer.length()-1] == '.') answer.erase(answer.length()-1, 1);
+    if(answer.front() == '.') answer.erase(answer.begin()); // 4
+    if(answer.back() == '.') answer.pop_back();
     
     if(answer.length() == 0) answer += "a"; // 5
     
