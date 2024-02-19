@@ -23,12 +23,12 @@ string solution(string new_id) {
     if(answer.front() == '.') answer.erase(answer.begin()); // 4
     if(answer.back() == '.') answer.pop_back();
     
-    if(answer.length() == 0) answer += "a"; // 5
+    if(answer.empty()) answer += "a"; // 5
     
     if(answer.length() > 15) // 6
     {
         answer.assign(answer.begin(), answer.begin()+15);
-        if(answer[answer.length()-1] == '.') answer.erase(answer.length()-1, 1);
+        if(answer.back() == '.') answer.pop_back();
     }
     
     if(answer.length() <= 2) // 7
