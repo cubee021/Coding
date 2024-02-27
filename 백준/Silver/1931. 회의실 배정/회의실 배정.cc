@@ -1,37 +1,42 @@
 #include<iostream>
-#include<stdio.h>
 #include<algorithm>
 #include<vector>
 using namespace std;
 
 int value[10];
 
+int solution(vector<pair<int, int>> meetings)
+{
+    int answer = 1;
+    
+    sort(meetings.begin(), meetings.end());
+	
+	int time = meetings[0].first;
+	for (int i = 1 ;i < meetings.size(); i++) 
+	{
+		if (time <= meetings[i].second )
+		{
+			answer++;
+			time = meetings[i].first;
+		}
+	}
+
+    return answer;
+}
+
 int main()
 {
-	int N, end, begin;
-
-	vector<pair<int, int>> schedule;
+    vector<pair<int, int>> meetings;
+	int N;
 
 	cin >> N ;
 
 	for (int i = 0; i < N; i++)
 	{
+        int begin, end;
 		cin >> begin >> end;
-		schedule.push_back(make_pair(end, begin));
+		meetings.push_back(make_pair(end, begin));
 	}
 	
-	sort(schedule.begin(), schedule.end());
-	
-	int time = schedule[0].first;
-	int count = 1;
-	for (int i = 1 ;i < N; i++) 
-	{
-		if (time <= schedule[i].second )
-		{
-			count++;
-			time = schedule[i].first;
-		}
-	}
-
-	cout << count;
+	cout << solution(meetings);
 }
