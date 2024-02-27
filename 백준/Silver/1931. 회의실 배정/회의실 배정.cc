@@ -3,8 +3,6 @@
 #include<vector>
 using namespace std;
 
-int value[10];
-
 int solution(vector<pair<int, int>> meetings)
 {
     int answer = 1;
