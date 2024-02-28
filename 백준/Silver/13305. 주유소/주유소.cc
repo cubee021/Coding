@@ -2,13 +2,13 @@
 #include <vector>
 using namespace std;
 
-int solution(vector<int> cities, vector<int> roads)
+long long solution(vector<long long> cities, vector<long long> roads)
 {
-	int answer = 0;
-	int min_cost = cities[0];
-	int road_sum = 0;
+	long long answer = 0;
+	long long min_cost = cities[0];
+	long long road_sum = 0;
 
-	for (int i = 0; i < cities.size() - 1; i++)
+	for (long long i = 0; i < cities.size() - 1; i++)
 	{
 		road_sum += roads[i];
 
@@ -32,12 +32,12 @@ int main()
 {
 	int n;
 	cin >> n;
-	vector<int> cities;
-	vector<int> roads;
+	vector<long long> cities;
+	vector<long long> roads;
 
 	for (int i = 0; i < n - 1; i++)
 	{
-		int temp;
+		long long temp;
 		cin >> temp;
 
 		roads.push_back(temp);
@@ -45,7 +45,7 @@ int main()
 
 	for (int i = 0; i < n; i++)
 	{
-		int temp;
+		long long temp;
 		cin >> temp;
 
 		cities.push_back(temp);
