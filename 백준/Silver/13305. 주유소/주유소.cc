@@ -5,27 +5,25 @@ using namespace std;
 int solution(vector<int> cities, vector<int> roads)
 {
 	int answer = 0;
-	int min = cities[0];
+	int min_cost = cities[0];
 	int road_sum = 0;
 
 	for (int i = 0; i < cities.size() - 1; i++)
 	{
-		if (cities[i] > cities[i + 1])
-		{
-			answer += (road_sum + roads[i]) * min;
+		road_sum += roads[i];
 
-			min = 0;
-			road_sum = 0;
-		}
-		else
+		if (min_cost > cities[i+1])
 		{
-			min = cities[i];
-			road_sum += roads[i];
+			answer += road_sum * min_cost;
+			min_cost = cities[i + 1];
+
+			road_sum = 0;
 		}
 	}
 
 	if(road_sum != 0)
-		answer += road_sum * min;
+		answer += road_sum * min_cost;
+
 
 	return answer;
 }
