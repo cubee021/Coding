@@ -1,47 +1,43 @@
 #include <iostream>
 #include <queue>
-#include <string.h> //memset 쓰려면 필요
+#include <string.h>
 using namespace std;
 
-int arr[1001][1001]; //인접행렬
-int visited[1001];   //방문기록
 int N, M, V;
+int edge[1001][1001];
+int visited[1001];
 
 void DFS(int V)
 {
-    visited[V] = 1;   //시작점 방문기록
-    cout << V << " "; //방문한 노드 출력
+    visited[V] = 1;
+    cout << V << " ";
 
     for (int i = 1; i <= N; i++)
     {
-        if (arr[V][i] == 1 && visited[i] == 0)
-        {
-            DFS(i); //스택에 i 넣는 셈
-        }
-        if (i == N)
-            return;
+        if (edge[V][i] == 1 && visited[i] == 0) DFS(i);
+            
+        if (i == N) return;
     }
 }
 
 void BFS(int V)
 {
-    queue<int> q; //큐 생성
-    q.push(V);    //시작노드 큐에 넣음
+    queue<int> q;
+    q.push(V);
 
     while (!q.empty())
     {
-        int next = q.front(); //큐 맨 앞에 값을 방문
-        visited[next] = 1;    //방문기록
-        cout << next << " ";  //방문한 노드 출력
-        q.pop();              //큐에서 뺌
+        int next = q.front();
+        visited[next] = 1;
+        cout << next << " ";
+        q.pop();
 
-        //방문했던 노드와 가까운 노드 큐에 넣어줌
         for (int i = 1; i <= N; i++)
         {
-            if (arr[next][i] == 1 && visited[i] == 0)
+            if (edge[next][i] == 1 && visited[i] == 0)
             {
-                q.push(i);         //큐에 넣어줌
-                visited[i] = 1; // i 점은 미리 방문기록 - 안하면 중복으로 방문할 수도 있다
+                q.push(i);
+                visited[i] = 1;
             }
         }
     }
@@ -50,20 +46,20 @@ void BFS(int V)
 
 int main()
 {
-    int u, v;
+    int a, b;
     cin >> N >> M >> V;
 
     for (int i = 0; i < M; i++)
     {
-        cin >> u >> v;
-        arr[u][v] = 1;
-        arr[v][u] = 1; //자리바꿔서도 해주는 이유 : 무방향이기 때문
-    }                  //입력 즉시 인접행렬에 넣어줌, 다 돌면 인접행렬 완성
+        cin >> a >> b;
+        edge[a][b] = 1;
+        edge[b][a] = 1;
+    }
 
-    DFS(V); // DFS 수행
+    DFS(V);
 
-    cout << "\n";                        //개행
-    memset(visited, 0, sizeof(visited)); //방문기록 visited 초기화
+    cout << "\n";
+    memset(visited, 0, sizeof(visited));
 
-    BFS(V); // BFS 수행
+    BFS(V);
 }
