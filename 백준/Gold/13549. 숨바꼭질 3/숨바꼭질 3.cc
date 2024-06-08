@@ -9,39 +9,40 @@ int main()
 	int N, K;
 	cin >> N >> K;
 
-	vector<int> visited(MAX_SIZE, -1);
-	deque<int> dq;
+	vector<bool> visited(MAX_SIZE, false);
+	deque<pair<int, int>> dq;
 
-	dq.push_back(N);
-	visited[N] = 1;
+	dq.push_back({N, 0}); // cur, time
+	visited[N] = true;
 
 	while (!dq.empty())
 	{
-		int cur = dq.front();
+		int cur = dq.front().first;
+		int time = dq.front().second;
 		dq.pop_front();
 
 		if (cur == K)
 		{
-			cout << visited[K] - 1;
+			cout << time;
 			break;
 		}
 
-		if (cur * 2 < MAX_SIZE && visited[cur * 2] == -1)
+		if (cur * 2 < MAX_SIZE && !visited[cur * 2])
 		{
-			dq.push_front(cur * 2);
-			visited[cur * 2] = visited[cur];
+			dq.push_front({cur*2, time});
+			visited[cur * 2] = true;
 		}
-        
-        if (cur - 1 >= 0 && visited[cur - 1] == -1)
+
+		if (cur - 1 >= 0 && !visited[cur - 1])
 		{
-			dq.push_back(cur - 1);
-			visited[cur - 1] = visited[cur] + 1;
+			dq.push_back({ cur - 1 , time + 1});
+			visited[cur - 1] = true;
 		}
-        
-		if (cur + 1 < MAX_SIZE && visited[cur + 1] == -1)
+
+		if (cur + 1 < MAX_SIZE && !visited[cur + 1])
 		{
-			dq.push_back(cur + 1);
-			visited[cur + 1] = visited[cur] + 1;
+			dq.push_back({ cur + 1 , time + 1 });
+			visited[cur + 1] = true;
 		}
 	}
 
