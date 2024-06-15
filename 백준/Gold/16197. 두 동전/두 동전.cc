@@ -11,15 +11,12 @@ vector<int> coin;
 
 int answer = 11;
 
-void BFS(vector<vector<bool>>& check1, vector<vector<bool>>& check2)
+void BFS()
 {
 	vector<pair<int, int>> dh = { {1, 0}, {-1, 0}, {0, 1}, {0, -1} };
 
 	queue<vector<int>> q;
 	q.push({ coin[0], coin[1], coin[2], coin[3], 1 });
-
-	check1[coin[0]][coin[1]] = true;
-	check1[coin[2]][coin[3]] = true;
 
 	while (!q.empty())
 	{
@@ -77,9 +74,6 @@ int main()
 {
 	cin >> N >> M;
 
-	vector<vector<bool>> check1(N, vector<bool>(M, false));
-	vector<vector<bool>> check2(N, vector<bool>(M, false));
-
 	for (int i = 0; i < N; i++)
 	{
 		string s;
@@ -97,7 +91,7 @@ int main()
 		board.push_back(s);
 	}
 
-	BFS(check1, check2);
+	BFS();
 
 	if (answer > 10) cout << -1;
 	else cout << answer;
